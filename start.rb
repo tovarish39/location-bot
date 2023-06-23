@@ -12,7 +12,10 @@ Telegram::Bot::Client.run(token) do |bot|
     when !message.location.nil?
       # puts message.location.inspect
       if message.location.live_period.nil?
-        answer = 'бот перестал получать отслеживание'
+        answer = 'Бот перестал получать отслеживание.'
+        bot.api.send_message(chat_id: message.chat.id, text:answer)
+      elsif message.location.horizontal_accuracy.nil?
+        answer = "Бот получил ваше место положения."
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       else
         horizontal_accuracy = message.location.horizontal_accuracy
