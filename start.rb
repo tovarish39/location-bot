@@ -6,6 +6,8 @@ Location = Telegram::Bot::Types::Location
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
+    puts message.location if !message.location.nil?
+    puts '-'
     case 
     when !message.location.nil?
       # puts message.location.inspect
@@ -13,6 +15,7 @@ Telegram::Bot::Client.run(token) do |bot|
         answer = 'бот перестал получать отслеживание'
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       else
+        horizontal_accuracy = message.location.horizontal_accuracy
         answer = "Бот получил изменение вашего места положения. Точность отслеживания #{horizontal_accuracy} метра"
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       end
