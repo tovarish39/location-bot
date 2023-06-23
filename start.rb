@@ -6,8 +6,8 @@ Location = Telegram::Bot::Types::Location
 
 Telegram::Bot::Client.run(token) do |bot|
   bot.listen do |message|
-    puts message.location.inspect if !message.location.nil?
-    puts '-'
+    # puts message.location.inspect if !message.location.nil?
+    # puts '-'
     case 
     when !message.location.nil?
       # puts message.location.inspect
