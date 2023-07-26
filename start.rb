@@ -27,6 +27,12 @@ Telegram::Bot::Client.run(token) do |bot|
     when message.text
       answer = 'Отправьте боту ваше место положение в реальном времени'
       bot.api.send_message(chat_id: message.chat.id, text:answer)
+
+      photo_paths = ['./images/1.png','./images/2.png','./images/3.png' ]
+        photo_paths.each do |photo_path|
+        path = File.expand_path(photo_path)
+      bot.api.send_photo(chat_id: message.chat.id, photo: Faraday::UploadIO.new(path, 'image/png'))
+      end
     end
   end
 end
