@@ -18,6 +18,7 @@ Telegram::Bot::Client.run(token) do |bot|
         answer = "Бот получил ваше место положение в реальном времени."
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       else
+        puts message.location.inspect
         horizontal_accuracy = message.location.horizontal_accuracy
         answer = "Бот получил изменение вашего места положения. Точность отслеживания #{horizontal_accuracy} метра"
         bot.api.send_message(chat_id: message.chat.id, text:answer)
