@@ -15,18 +15,18 @@ Telegram::Bot::Client.run(token) do |bot|
         answer = 'Бот перестал получать отслеживание.'
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       elsif message.location.horizontal_accuracy.nil?
-        answer = "Бот получил ваше место положение в реальном времени."
+        answer = "Бот получил ваше местоположение в реальном времени."
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       else
-        puts message.location.inspect
+        # puts message.location.inspect
         horizontal_accuracy = message.location.horizontal_accuracy
-        answer = "Бот получил изменение вашего места положения. Точность отслеживания #{horizontal_accuracy} метра"
+        answer = "Бот получил изменение вашего местоположения. Точность отслеживания #{horizontal_accuracy} метра"
         bot.api.send_message(chat_id: message.chat.id, text:answer)
       end
 
       # puts
     when message.text
-      answer = 'Отправьте боту ваше место положение в реальном времени'
+      answer = 'Отправьте боту ваше местоположение в реальном времени'
       bot.api.send_message(chat_id: message.chat.id, text:answer)
 
       photo_paths = ['./images/1.png','./images/2.png']
